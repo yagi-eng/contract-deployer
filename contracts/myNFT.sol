@@ -17,6 +17,7 @@ contract myNFT is ERC721, Ownable {
         return "ipfs://QmR9gMXXoC3RRnZVWGgJcHkRLjq2UqEkA7ifQqiMc7QGPN/";
     }
 
+    // XXX onlyOwener is necessary? or is there another way?
     function mintNFT(address recipient) public onlyOwner returns (uint256) {
         _tokenIds.increment();
 
