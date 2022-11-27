@@ -11,16 +11,17 @@ contract myNFT is ERC721URIStorage, Ownable {
 
     constructor() ERC721("myNFT", "MN") {}
 
-    function mintNFT(address recipient, string memory tokenURI)
-        public
-        onlyOwner
-        returns (uint256)
-    {
+    // XXX make enable to change from outside or use constructor
+    function _baseURI() internal view virtual override returns (string memory) {
+        return "ipfs://QmR9gMXXoC3RRnZVWGgJcHkRLjq2UqEkA7ifQqiMc7QGPN/";
+    }
+
+    function mintNFT(address recipient) public onlyOwner returns (uint256) {
         _tokenIds.increment();
 
         uint256 newTokenId = _tokenIds.current();
         _safeMint(recipient, newTokenId);
-        _setTokenURI(newTokenId, tokenURI);
+        _setTokenURI(newTokenId, "");
 
         return newTokenId;
     }
