@@ -12,9 +12,7 @@ import myNFTJSON from "../artifacts/contracts/myNFT.sol/myNFT.json";
 const myNFTAbi = (myNFTJSON.abi as any) as AbiItem;
 const myNFTContract = new web3.eth.Contract(myNFTAbi, CONTRACT_ADDRESS)
 
-const mintNFT = async (
-  tokenURI: string,
-) => {
+const mintNFT = async () => {
 
   const account = String(SENDER_PUBLIC_KEY);
   const nonce = await web3.eth.getTransactionCount(account, "latest");
@@ -24,7 +22,7 @@ const mintNFT = async (
     to: CONTRACT_ADDRESS,
     nonce: nonce,
     gas: 500000,
-    data: myNFTContract.methods.mintNFT(account, tokenURI).encodeABI(),
+    data: myNFTContract.methods.mintNFT(account).encodeABI(),
   };
 
   const signPromise = web3.eth.accounts.signTransaction(tx, SENDER_PRIVATE_KEY);
@@ -46,4 +44,4 @@ const mintNFT = async (
     }
   )
 }
-mintNFT("https://gateway.pinata.cloud/ipfs/QmPoUrxwCFuPiXGFond4eAnpj228wJDbKMTszmKQrRWxc7");
+mintNFT();
