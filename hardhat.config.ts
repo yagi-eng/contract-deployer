@@ -12,6 +12,10 @@ const config: HardhatUserConfig = {
       url: ALCHEMY_API_URL,
       accounts: [String(OWNER_PRIVATE_KEY)],
     },
+    mumbai: {
+      url: ALCHEMY_API_URL,
+      accounts: [String(OWNER_PRIVATE_KEY)],
+    },
     mainnet: {
       url: ALCHEMY_API_URL,
       accounts: [String(OWNER_PRIVATE_KEY)],
